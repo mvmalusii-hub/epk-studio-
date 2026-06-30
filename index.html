@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ─── same styles as before ─── */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: #f8fafc;
@@ -283,18 +284,20 @@
                     <button class="mode-btn" data-mode="llp">🏛️ LLP & Professional Firms</button>
                 </div>
 
+                <!-- ─── CREATIVE WORKSPACE ─── -->
                 <div id="workspace-creative" class="mode-workspace active-mode">
                     <div class="category-tabs" id="creativeTabs"></div>
                     <div class="content-pane" id="creativeContent"></div>
                 </div>
 
+                <!-- ─── LLP WORKSPACE ─── -->
                 <div id="workspace-llp" class="mode-workspace">
                     <div class="category-tabs" id="llpTabs"></div>
                     <div class="content-pane" id="llpContent"></div>
                 </div>
 
                 <div class="footer-note">
-                    🚀 <strong>Unified EPK Studio</strong> — Two dedicated workspaces: Creative Arts Pros & LLP Professional Firms. Each with their own category tabs and 20+ sample markets.<br>
+                    🚀 <strong>Unified EPK Studio</strong> — Two dedicated workspaces: Creative Arts Pros & LLP Professional Firms. Each with their own category tabs.<br>
                     📸 Replace placeholder images with actual headshots, firm logos, or project imagery when building final EPK.
                 </div>
                 <div class="llp-footer">
@@ -308,43 +311,41 @@
 
     <script>
         // ────────────────────────────────────────────────────────────────
-        //  DATA — all cards, grouped by mode and category
+        //  DATA — all cards with LINKS to their folder
         // ────────────────────────────────────────────────────────────────
         const DATA = {
             creative: {
-                name: 'Creative Arts Pros',
-                icon: '🎨',
                 categories: {
                     entertainment: {
                         label: '🎭 Entertainment',
                         title: '🎭 Film · TV · Commercial Talent',
                         cards: [
-                            { title: 'Actor / Commercial Talent', desc: 'TV series, film, national commercials. Showreel, headshots, agent contacts.', slug: 'actor-talent', icon: 'fa-user' },
-                            { title: 'Voice-over Artist', desc: 'Animation, radio, corporate narration. Demo reel, client logos.', slug: 'voice-over-artist', icon: 'fa-microphone-alt' },
-                            { title: 'Dancer / Choreographer', desc: 'Performance reels, workshop schedule, company affiliations.', slug: 'dancer-choreographer', icon: 'fa-music' },
-                            { title: 'Comedian', desc: 'Tour dates, press quotes, video clips, club bookers.', slug: 'comedian', icon: 'fa-laugh-squint' },
-                            { title: 'Film Director / Filmmaker', desc: 'Showreel, festival selections, crew testimonials.', slug: 'film-director', icon: 'fa-video' }
+                            { title: 'Actor / Commercial Talent', desc: 'TV series, film, national commercials.', slug: 'actor-talent', icon: 'fa-user' },
+                            { title: 'Voice-over Artist', desc: 'Animation, radio, corporate narration.', slug: 'voice-over-artist', icon: 'fa-microphone-alt' },
+                            { title: 'Dancer / Choreographer', desc: 'Performance reels, workshop schedule.', slug: 'dancer-choreographer', icon: 'fa-music' },
+                            { title: 'Comedian', desc: 'Tour dates, press quotes, video clips.', slug: 'comedian', icon: 'fa-laugh-squint' },
+                            { title: 'Film Director / Filmmaker', desc: 'Showreel, festival selections.', slug: 'film-director', icon: 'fa-video' }
                         ]
                     },
                     visualarts: {
                         label: '🎨 Visual Arts',
                         title: '🎨 Fine Art · Sculpture · Illustration',
                         cards: [
-                            { title: 'Painter / Fine Artist', desc: 'Artwork gallery, exhibition history, collector testimonials.', slug: 'painter-fine-artist', icon: 'fa-palette' },
+                            { title: 'Painter / Fine Artist', desc: 'Artwork gallery, exhibition history.', slug: 'painter-fine-artist', icon: 'fa-palette' },
                             { title: 'Sculptor', desc: 'Stone, bronze, wood works. Public commissions.', slug: 'sculptor', icon: 'fa-cube' },
-                            { title: 'Illustrator / Concept Artist', desc: 'Commission work, brand collaborations, online store.', slug: 'illustrator-concept-artist', icon: 'fa-pencil-ruler' },
-                            { title: 'Photographer', desc: 'Fashion, documentary, commercial. Galleries & client lists.', slug: 'photographer', icon: 'fa-camera-retro' },
-                            { title: 'Tattoo Artist', desc: 'Flash designs, studio policies, booking info, healed work.', slug: 'tattoo-artist', icon: 'fa-dragon' }
+                            { title: 'Illustrator / Concept Artist', desc: 'Commission work, brand collaborations.', slug: 'illustrator-concept-artist', icon: 'fa-pencil-ruler' },
+                            { title: 'Photographer', desc: 'Fashion, documentary, commercial.', slug: 'photographer', icon: 'fa-camera-retro' },
+                            { title: 'Tattoo Artist', desc: 'Flash designs, studio policies.', slug: 'tattoo-artist', icon: 'fa-dragon' }
                         ]
                     },
                     sports: {
                         label: '🏆 Sports',
                         title: '🏅 Athletes · Coaches · Health Pros',
                         cards: [
-                            { title: 'Professional Athlete', desc: 'Stats, sponsors, press mentions, highlight reels.', slug: 'professional-athlete', icon: 'fa-futbol' },
-                            { title: 'Sports Scientist', desc: 'Rehab protocols, performance testing, workshops.', slug: 'sports-scientist', icon: 'fa-heartbeat' },
-                            { title: 'Personal Trainer', desc: 'Before/after, certifications, online coaching.', slug: 'personal-trainer', icon: 'fa-dumbbell' },
-                            { title: 'Yoga / Pilates Instructor', desc: 'Class schedule, retreats, testimonials.', slug: 'yoga-pilates-instructor', icon: 'fa-spa' }
+                            { title: 'Professional Athlete', desc: 'Stats, sponsors, press mentions.', slug: 'professional-athlete', icon: 'fa-futbol' },
+                            { title: 'Sports Scientist', desc: 'Rehab protocols, performance testing.', slug: 'sports-scientist', icon: 'fa-heartbeat' },
+                            { title: 'Personal Trainer', desc: 'Before/after, certifications.', slug: 'personal-trainer', icon: 'fa-dumbbell' },
+                            { title: 'Yoga / Pilates Instructor', desc: 'Class schedule, retreats.', slug: 'yoga-pilates-instructor', icon: 'fa-spa' }
                         ]
                     },
                     music: {
@@ -360,16 +361,16 @@
                         label: '📢 Media',
                         title: '📱 Content Creators · Speakers · Writers',
                         cards: [
-                            { title: 'Content Creator / Influencer', desc: 'Brand collab history, analytics, rates.', slug: 'content-creator-influencer', icon: 'fa-instagram' },
-                            { title: 'Public Speaker', desc: 'Speaking topics, past stages, testimonials.', slug: 'public-speaker', icon: 'fa-microphone-alt' }
+                            { title: 'Content Creator / Influencer', desc: 'Brand collab history, analytics.', slug: 'content-creator-influencer', icon: 'fa-instagram' },
+                            { title: 'Public Speaker', desc: 'Speaking topics, past stages.', slug: 'public-speaker', icon: 'fa-microphone-alt' }
                         ]
                     },
                     events: {
                         label: '🎪 Events',
                         title: '🎪 Hosts · Planners · Chefs · Educators',
                         cards: [
-                            { title: 'Event Host / MC', desc: 'Crowd photos, client feedback, video snippets.', slug: 'event-host-mc', icon: 'fa-chalkboard-user' },
-                            { title: 'Chef / Culinary Artist', desc: 'Signature dishes, press features, brand partnerships.', slug: 'chef-culinary-artist', icon: 'fa-utensils' }
+                            { title: 'Event Host / MC', desc: 'Crowd photos, client feedback.', slug: 'event-host-mc', icon: 'fa-chalkboard-user' },
+                            { title: 'Chef / Culinary Artist', desc: 'Signature dishes, press features.', slug: 'chef-culinary-artist', icon: 'fa-utensils' }
                         ]
                     },
                     business: {
@@ -377,70 +378,68 @@
                         title: '💼 Design · Architecture · Beauty · Freelance',
                         cards: [
                             { title: 'Graphic Designer', desc: 'Portfolio, client list, brand work.', slug: 'graphic-designer', icon: 'fa-paint-brush' },
-                            { title: 'Architect / Interior Designer', desc: 'Project galleries, publications, awards.', slug: 'architect-interior-designer', icon: 'fa-building' }
+                            { title: 'Architect / Interior Designer', desc: 'Project galleries, publications.', slug: 'architect-interior-designer', icon: 'fa-building' }
                         ]
                     }
                 }
             },
             llp: {
-                name: 'LLP & Professional Firms',
-                icon: '🏛️',
                 categories: {
                     legal: {
                         label: '⚖️ Legal',
                         title: '⚖️ Law Firms · LLP Members · Barristers',
                         cards: [
-                            { title: 'Law Firm Partner / LLP Member', desc: 'Practice areas, landmark cases, partner credentials.', slug: 'law-firm-partner', icon: 'fa-gavel' },
-                            { title: 'In-House Counsel / Legal Director', desc: 'Corporate governance, compliance highlights.', slug: 'in-house-counsel', icon: 'fa-briefcase' },
-                            { title: 'Mediator / Arbitrator', desc: 'Dispute resolution track record, case studies.', slug: 'mediator-arbitrator', icon: 'fa-scale-balanced' }
+                            { title: 'Law Firm Partner / LLP Member', desc: 'Practice areas, landmark cases.', slug: 'law-firm-partner', icon: 'fa-gavel' },
+                            { title: 'In-House Counsel / Legal Director', desc: 'Corporate governance, compliance.', slug: 'in-house-counsel', icon: 'fa-briefcase' },
+                            { title: 'Mediator / Arbitrator', desc: 'Dispute resolution, case studies.', slug: 'mediator-arbitrator', icon: 'fa-scale-balanced' }
                         ]
                     },
                     financial: {
                         label: '💰 Financial',
                         title: '💰 Accounting · Wealth · Audit & Advisory',
                         cards: [
-                            { title: 'CPA / Accounting Partner', desc: 'Audit specialties, client portfolio, recognitions.', slug: 'cpa-accounting-partner', icon: 'fa-calculator' },
-                            { title: 'Wealth Manager / Family Office', desc: 'Investment philosophy, AUM, client success.', slug: 'wealth-manager', icon: 'fa-chart-line' }
+                            { title: 'CPA / Accounting Partner', desc: 'Audit specialties, client portfolio.', slug: 'cpa-accounting-partner', icon: 'fa-calculator' },
+                            { title: 'Wealth Manager / Family Office', desc: 'Investment philosophy, AUM.', slug: 'wealth-manager', icon: 'fa-chart-line' }
                         ]
                     },
                     consulting: {
                         label: '📊 Consulting',
                         title: '📊 Management Consultants · Strategy Advisors',
                         cards: [
-                            { title: 'Strategy Consultant', desc: 'Case studies, frameworks, transformation results.', slug: 'strategy-consultant', icon: 'fa-chalkboard-user' },
-                            { title: 'HR / Talent Advisor', desc: 'Leadership coaching, organizational design.', slug: 'hr-talent-advisor', icon: 'fa-users' }
+                            { title: 'Strategy Consultant', desc: 'Case studies, frameworks.', slug: 'strategy-consultant', icon: 'fa-chalkboard-user' },
+                            { title: 'HR / Talent Advisor', desc: 'Leadership coaching, org design.', slug: 'hr-talent-advisor', icon: 'fa-users' }
                         ]
                     },
                     realestate: {
                         label: '🏢 Real Estate',
                         title: '🏢 Property Development · Architecture · RE Partnerships',
                         cards: [
-                            { title: 'Real Estate Partner / Developer', desc: 'Project portfolio, capital partners, impact.', slug: 'real-estate-partner-developer', icon: 'fa-building' },
-                            { title: 'Architecture Firm / Principal', desc: 'Design awards, built works, certifications.', slug: 'architecture-firm-principal', icon: 'fa-draw-polygon' }
+                            { title: 'Real Estate Partner / Developer', desc: 'Project portfolio, capital partners.', slug: 'real-estate-partner-developer', icon: 'fa-building' },
+                            { title: 'Architecture Firm / Principal', desc: 'Design awards, built works.', slug: 'architecture-firm-principal', icon: 'fa-draw-polygon' }
                         ]
                     },
                     corporate: {
                         label: '📑 Corporate',
                         title: '📑 Company Secretaries · Compliance Officers · ESG',
                         cards: [
-                            { title: 'Company Secretary / Governance Lead', desc: 'Board compliance, annual filings, governance.', slug: 'company-secretary-governance', icon: 'fa-file-signature' },
-                            { title: 'Compliance & Ethics Officer', desc: 'Regulatory certifications, audit outcomes.', slug: 'compliance-ethics-officer', icon: 'fa-clipboard-list' }
+                            { title: 'Company Secretary / Governance Lead', desc: 'Board compliance, filings.', slug: 'company-secretary-governance', icon: 'fa-file-signature' },
+                            { title: 'Compliance & Ethics Officer', desc: 'Regulatory certifications.', slug: 'compliance-ethics-officer', icon: 'fa-clipboard-list' }
                         ]
                     },
                     tech: {
                         label: '💻 Tech',
                         title: '💻 SaaS · IT Consultancies · Digital Agencies',
                         cards: [
-                            { title: 'Tech Founder / CTO', desc: 'Product roadmap, funding rounds, deployments.', slug: 'tech-founder-cto', icon: 'fa-laptop-code' },
-                            { title: 'IT / Digital Transformation Firm', desc: 'Case studies, certifications, client ROI.', slug: 'it-digital-transformation-firm', icon: 'fa-cloud-upload-alt' }
+                            { title: 'Tech Founder / CTO', desc: 'Product roadmap, funding rounds.', slug: 'tech-founder-cto', icon: 'fa-laptop-code' },
+                            { title: 'IT / Digital Transformation Firm', desc: 'Case studies, certifications.', slug: 'it-digital-transformation-firm', icon: 'fa-cloud-upload-alt' }
                         ]
                     },
                     health: {
                         label: '🏥 Health',
                         title: '🏥 Medical Practices · Wellness LLPs · HealthTech',
                         cards: [
-                            { title: 'Medical Practice / Clinic LLP', desc: 'Specialties, physician profiles, patient outcomes.', slug: 'medical-practice-clinic', icon: 'fa-hospital-user' },
-                            { title: 'Health & Wellness Coach', desc: 'Certifications, client transformations, speaking events.', slug: 'health-wellness-coach', icon: 'fa-heartbeat' }
+                            { title: 'Medical Practice / Clinic LLP', desc: 'Specialties, physician profiles.', slug: 'medical-practice-clinic', icon: 'fa-hospital-user' },
+                            { title: 'Health & Wellness Coach', desc: 'Certifications, client transformations.', slug: 'health-wellness-coach', icon: 'fa-heartbeat' }
                         ]
                     }
                 }
@@ -448,7 +447,7 @@
         };
 
         // ────────────────────────────────────────────────────────────────
-        //  RENDER ENGINE
+        //  RENDER ENGINE — cards link to their folder's 1.html
         // ────────────────────────────────────────────────────────────────
         function renderCategory(modeKey, categoryKey, container) {
             const mode = DATA[modeKey];
@@ -457,15 +456,14 @@
 
             let html = `<div class="category-page active-category"><div class="section-subtitle">${cat.title}</div><div class="market-grid">`;
             cat.cards.forEach(card => {
-                // Generate a unique gradient for each card image (placeholder)
                 const colors = ['1e2f44', '2a3d5e', '162b44', '1f3a55', '283e5a'];
                 const rand = colors[Math.floor(Math.random() * colors.length)];
                 html += `
-                    <a href="previews/preview.html?slug=${card.slug}" class="client-card">
+                    <a href="${card.slug}/1.html" class="client-card">
                         <svg class="card-img" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
                             <rect width="400" height="160" fill="#${rand}" />
                             <text x="200" y="90" text-anchor="middle" fill="#6ee7b7" font-family="Inter, sans-serif" font-size="22" font-weight="700">${card.title.split(' ').slice(0,2).join(' ')}</text>
-                            <text x="200" y="120" text-anchor="middle" fill="#8ca3c0" font-family="Inter, sans-serif" font-size="12">Click to preview</text>
+                            <text x="200" y="120" text-anchor="middle" fill="#8ca3c0" font-family="Inter, sans-serif" font-size="12">6 EPK styles</text>
                         </svg>
                         <div class="card-content">
                             <div class="card-title"><i class="fas ${card.icon}"></i> ${card.title}</div>
@@ -476,7 +474,7 @@
                 `;
             });
             html += `</div><div class="preview-actions">
-                <a href="previews/preview.html?slug=${cat.cards[0].slug}" class="preview-link"><i class="fas fa-mobile-alt"></i> View All ${cat.cards.length} EPK Previews →</a>
+                <a href="${cat.cards[0].slug}/1.html" class="preview-link"><i class="fas fa-mobile-alt"></i> View All ${cat.cards.length} EPK Previews →</a>
             </div></div>`;
             container.innerHTML = html;
         }
@@ -486,7 +484,6 @@
             const catKeys = Object.keys(mode.categories);
             if (!catKeys.length) return;
 
-            // Tabs
             let tabsHtml = '';
             catKeys.forEach((key, i) => {
                 const active = i === 0 ? 'active' : '';
@@ -494,19 +491,15 @@
             });
             tabContainer.innerHTML = tabsHtml;
 
-            // First category content
             renderCategory(modeKey, catKeys[0], contentContainer);
 
-            // Tab click handler
             tabContainer.querySelectorAll('.cat-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const m = btn.dataset.mode;
                     const c = btn.dataset.cat;
                     const container = m === 'creative' ? document.getElementById('creativeContent') : document.getElementById('llpContent');
-                    // Update active class
                     tabContainer.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
-                    // Render new content
                     renderCategory(m, c, container);
                 });
             });
