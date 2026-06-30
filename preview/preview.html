@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPK Preview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0b1120;
+            font-family: 'Inter', sans-serif;
+            color: #e2e8f0;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page-wrapper { max-width: 1400px; width: 100%; }
+
+        .page-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #1e2a3a;
+        }
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #6ee7b7, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .page-header h1 i {
+            -webkit-text-fill-color: initial;
+            color: #fbbf24;
+            margin-right: 8px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1e293b;
+            padding: 0.6rem 1.4rem;
+            border-radius: 60px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            border: 1px solid #334155;
+        }
+        .back-link:hover {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: #fff;
+        }
+
+        .instructions-box {
+            background: #131c2c;
+            border: 1px solid #1e2f44;
+            border-radius: 1.2rem;
+            padding: 1.2rem 1.8rem;
+            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #cbd5e1;
+        }
+        .instructions-box strong { color: #fbbf24; }
+        .instructions-box code {
+            background: #0f172a;
+            padding: 0.2rem 0.6rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: #6ee7b7;
+            border: 1px solid #1e2a3a;
+        }
+
+        .phone-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .phone-mockup { display: flex; flex-direction: column; align-items: center; }
+        .phone-body {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 9 / 19;
+            max-width: 300px;
+            background: #0b0b12;
+            border-radius: 42px;
+            padding: 14px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 0 1px rgba(255,255,255,0.04);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .phone-body:hover {
+            transform: scale(1.02) translateY(-4px);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.08), inset 0 0 0 1px rgba(255,255,255,0.06);
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #111118;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.6);
+        }
+        .notch {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110px;
+            height: 26px;
+            background: #0b0b12;
+            border-radius: 0 0 18px 18px;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+        }
+        .notch .camera {
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle at 35% 35%, #2a2a3a, #0a0a12);
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .notch .speaker {
+            width: 36px;
+            height: 5px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+        }
+        .phone-screen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            background: #0a0a12;
+        }
+        .phone-label {
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-align: center;
+            background: rgba(255,255,255,0.03);
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            border: 1px solid #1e2a3a;
+        }
+        .not-found {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #94a3b8;
+        }
+        .not-found i { font-size: 3rem; color: #fbbf24; margin-bottom: 1rem; display: block; }
+
+        @media (max-width: 992px) { .phone-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; } }
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.8rem; }
+            .page-header h1 { font-size: 1.5rem; }
+            .phone-grid { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+            .phone-body { max-width: 180px; padding: 10px; border-radius: 30px; }
+            .phone-screen { border-radius: 22px; }
+            .notch { width: 70px; height: 18px; top: 6px; }
+            .notch .speaker { width: 24px; height: 3px; }
+            .notch .camera { width: 7px; height: 7px; }
+            .instructions-box { font-size: 0.8rem; padding: 1rem; }
+        }
+        @media (max-width: 420px) { .phone-grid { grid-template-columns: 1fr; gap: 2rem; } .phone-body { max-width: 240px; } }
+
+        .page-footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1e2a3a;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #475569;
+        }
+        .page-footer a { color: #3b82f6; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper" id="app">
+        <header class="page-header">
+            <h1><i class="fas fa-mobile-alt"></i> <span id="pageTitle">EPK Previews</span></h1>
+            <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Studio</a>
+        </header>
+
+        <div class="instructions-box">
+            <p><i class="fas fa-paste"></i> <strong>Paste your 6 EPK HTML files:</strong> Save them as <code>epk-1.html</code> to <code>epk-6.html</code> in this <strong>same folder</strong>. Then update the <code>src</code> attributes in the iframes below (or use <code>srcdoc</code>).</p>
+        </div>
+
+        <div id="phoneGrid" class="phone-grid">
+            <!-- 6 phones will be rendered by JavaScript -->
+        </div>
+
+        <footer class="page-footer">
+            <p>Dedicated preview for <span id="footerSlug"></span> · <a href="mailto:mv.malusi@legacylaunchpad.co.za">mv.malusi@legacylaunchpad.co.za</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // ────────────────────────────────────────────────────────────
+        //  DATA: All 38 EPK types with their 6 preview file names
+        //  Add or remove slugs here. Each slug must be unique.
+        // ────────────────────────────────────────────────────────────
+        const EPK_DATA = {
+            // ── Creative Arts ──
+            'actor-talent': { title: 'Actor / Commercial Talent', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'voice-over-artist': { title: 'Voice-over Artist', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'dancer-choreographer': { title: 'Dancer / Choreographer', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'comedian': { title: 'Comedian', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'film-director': { title: 'Film Director / Filmmaker', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+
+            'painter-fine-artist': { title: 'Painter / Fine Artist', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'sculptor': { title: 'Sculptor', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'illustrator-concept-artist': { title: 'Illustrator / Concept Artist', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'photographer': { title: 'Photographer', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'tattoo-artist': { title: 'Tattoo Artist', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+
+            'professional-athlete': { title: 'Professional Athlete', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'sports-scientist': { title: 'Sports Scientist', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'personal-trainer': { title: 'Personal Trainer', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'yoga-pilates-instructor': { title: 'Yoga / Pilates Instructor', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+
+            'musician-band': { title: 'Musician / Band', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'dj-producer': { title: 'DJ / Producer', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'podcaster': { title: 'Podcaster', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+
+            'content-creator-influencer': { title: 'Content Creator / Influencer', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'public-speaker': { title: 'Public Speaker', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+
+            'event-host-mc': { title: 'Event Host / MC', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'chef-culinary-artist': { title: 'Chef / Culinary Artist', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+
+            'graphic-designer': { title: 'Graphic Designer', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'architect-interior-designer': { title: 'Architect / Interior Designer', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+
+            // ── LLP & Professional Firms ──
+            'law-firm-partner': { title: 'Law Firm Partner / LLP Member', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'in-house-counsel': { title: 'In-House Counsel / Legal Director', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'mediator-arbitrator': { title: 'Mediator / Arbitrator', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+
+            'cpa-accounting-partner': { title: 'CPA / Accounting Partner', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'wealth-manager': { title: 'Wealth Manager / Family Office', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+
+            'strategy-consultant': { title: 'Strategy Consultant', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'hr-talent-advisor': { title: 'HR / Talent Advisor', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+
+            'real-estate-partner-developer': { title: 'Real Estate Partner / Developer', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'architecture-firm-principal': { title: 'Architecture Firm / Principal', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+
+            'company-secretary-governance': { title: 'Company Secretary / Governance Lead', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'compliance-ethics-officer': { title: 'Compliance & Ethics Officer', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+
+            'tech-founder-cto': { title: 'Tech Founder / CTO', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'it-digital-transformation-firm': { title: 'IT / Digital Transformation Firm', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+
+            'medical-practice-clinic': { title: 'Medical Practice / Clinic LLP', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'health-wellness-coach': { title: 'Health & Wellness Coach', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+        };
+
+        // ────────────────────────────────────────────────────────────
+        //  RENDER LOGIC
+        // ────────────────────────────────────────────────────────────
+        function getSlug() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('slug');
+        }
+
+        function renderPreview(slug) {
+            const data = EPK_DATA[slug];
+            const grid = document.getElementById('phoneGrid');
+            const titleEl = document.getElementById('pageTitle');
+            const footerSlug = document.getElementById('footerSlug');
+
+            if (!data) {
+                titleEl.textContent = 'EPK Not Found';
+                grid.innerHTML = `
+                    <div class="not-found" style="grid-column: 1 / -1;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h2>No EPK found for "${slug}"</h2>
+                        <p style="margin-top: 1rem; color: #6c7b96;">Go back to the <a href="../index.html" style="color: #3b82f6;">Studio</a> and select a valid category.</p>
+                    </div>
+                `;
+                footerSlug.textContent = 'slug not found';
+                return;
+            }
+
+            titleEl.textContent = data.title + ' · EPK Previews';
+            footerSlug.textContent = data.title;
+
+            let html = '';
+            const labels = ['Style 1', 'Style 2', 'Style 3', 'Style 4', 'Style 5', 'Style 6'];
+
+            data.epks.forEach((src, i) => {
+                html += `
+                    <div class="phone-mockup">
+                        <div class="phone-body">
+                            <div class="phone-screen">
+                                <div class="notch">
+                                    <span class="camera"></span>
+                                    <span class="speaker"></span>
+                                </div>
+                                <iframe src="${src}" title="${data.title} - ${labels[i]}"></iframe>
+                            </div>
+                        </div>
+                        <div class="phone-label">${labels[i]}</div>
+                    </div>
+                `;
+            });
+
+            grid.innerHTML = html;
+        }
+
+        // ─── RUN ───
+        const slug = getSlug();
+        if (slug) {
+            renderPreview(slug);
+        } else {
+            document.getElementById('pageTitle').textContent = 'Select an EPK';
+            document.getElementById('phoneGrid').innerHTML = `
+                <div class="not-found" style="grid-column: 1 / -1;">
+                    <i class="fas fa-hand-pointer"></i>
+                    <h2>No EPK selected</h2>
+                    <p style="margin-top: 1rem; color: #6c7b96;">Go back to the <a href="../index.html" style="color: #3b82f6;">Studio</a> and click any card.</p>
+                </div>
+            `;
+            document.getElementById('footerSlug').textContent = 'no selection';
+        }
+    </script>
+</body>
+</html>
