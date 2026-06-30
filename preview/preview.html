@@ -234,7 +234,615 @@
             'tattoo-artist': { title: 'Tattoo Artist', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
 
             'professional-athlete': { title: 'Professional Athlete', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
-            'sports-scientist': { title: 'Sports Scientist', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
+            'sports-scientist': { title: 'Sports Scientist', epks: ['<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Tebello Moime | Sport Scientist · EPK + Bio</title>
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(125deg, #f4faf7 0%, #e3efe9 100%);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: 1.8rem 1rem 3rem;
+            color: #1e3a2f;
+        }
+
+        .epk-card {
+            max-width: 760px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 2.5rem;
+            box-shadow: 0 30px 45px -18px rgba(0, 48, 36, 0.25);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        /* photo section - interactive upload */
+        .photo-section {
+            background: linear-gradient(145deg, #d9ece4, #cde3da);
+            padding: 1.6rem 1rem 1.2rem;
+            text-align: center;
+            border-bottom: 1px solid #bcd9cf;
+        }
+
+        .photo-frame {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 12px 22px -8px rgba(0, 0, 0, 0.2);
+            background: #cbdcd4;
+            transition: 0.2s;
+        }
+
+        .camera-overlay {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            background: #236b57;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            color: white;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .camera-overlay:hover {
+            background: #155a48;
+            transform: scale(1.05);
+        }
+
+        .photo-hint {
+            font-size: 0.7rem;
+            margin-top: 12px;
+            color: #2a5d4e;
+            font-weight: 500;
+            background: rgba(255,255,240,0.7);
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 60px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* header text */
+        .name-title {
+            padding: 1rem 1.5rem 0.8rem;
+            text-align: center;
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: #194e3e;
+        }
+
+        .badge-role {
+            background: #e1f0ea;
+            display: inline-block;
+            padding: 0.25rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #1a725a;
+            margin: 0.5rem 0 0.2rem;
+        }
+
+        .location-bio {
+            font-size: 0.85rem;
+            color: #4f7768;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 0.4rem;
+        }
+
+        .summary {
+            background: #f6fdfa;
+            margin: 0.8rem 1.5rem 1rem;
+            padding: 0.9rem 1.2rem;
+            border-radius: 28px;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            border: 1px solid #d9ece2;
+            color: #2a5a4b;
+        }
+
+        /* action buttons */
+        .action-links {
+            padding: 0.2rem 1.5rem 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .btn-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: white;
+            border: 1px solid #cde0d8;
+            border-radius: 60px;
+            padding: 0.8rem 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: #1a644f;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-link i {
+            width: 28px;
+            font-size: 1.2rem;
+            color: #2a8b70;
+        }
+
+        .btn-link:hover {
+            background: #effaf5;
+            border-color: #aacfc1;
+            transform: translateY(-2px);
+        }
+
+        .btn-solid-primary {
+            background: #1a6e58;
+            border: none;
+            color: white;
+        }
+
+        .btn-solid-primary i {
+            color: white;
+        }
+
+        .btn-solid-primary:hover {
+            background: #0f5543;
+        }
+
+        /* content sections */
+        .content-section {
+            padding: 0.2rem 1.5rem 1.6rem;
+        }
+
+        .section-head {
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin: 1.2rem 0 0.8rem 0;
+            color: #1d5642;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-left: 4px solid #329f82;
+            padding-left: 12px;
+        }
+
+        .exp-item {
+            background: #fbfefc;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 0.9rem;
+            border: 1px solid #e3f0ea;
+        }
+
+        .exp-title {
+            font-weight: 800;
+            font-size: 1rem;
+            color: #174f3e;
+        }
+
+        .exp-meta {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #468670;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 4px 0 6px;
+        }
+
+        .exp-desc {
+            font-size: 0.84rem;
+            line-height: 1.45;
+            color: #2c5d4e;
+        }
+
+        .skill-chip {
+            background: #e2f1eb;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #236653;
+            display: inline-block;
+            margin: 0 6px 8px 0;
+        }
+
+        .lang-tag {
+            background: white;
+            border: 1px solid #c0dbd1;
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .footer-credit {
+            text-align: center;
+            font-size: 0.7rem;
+            padding: 1.2rem 1rem 1.6rem;
+            color: #78a293;
+            border-top: 1px solid #e0ede6;
+            background: #ffffff;
+        }
+
+        .toast-notify {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f4238;
+            color: white;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+            backdrop-filter: blur(10px);
+            font-family: monospace;
+        }
+
+        @media (max-width: 550px) {
+            .photo-frame {
+                width: 110px;
+                height: 110px;
+            }
+            .name {
+                font-size: 1.6rem;
+            }
+            .action-links, .content-section {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .summary {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+        }
+
+        input#photoUpload {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="epk-card">
+    <!-- PHOTO SPACE with upload feature -->
+    <div class="photo-section">
+        <div class="photo-frame" id="photoFrame">
+            <img id="profileImage" class="profile-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234a9e86'/%3E%3Ctext x='50' y='67' font-size='40' text-anchor='middle' fill='white' font-weight='bold'%3ET⚡%3C/text%3E%3C/svg%3E" alt="Profile">
+            <div class="camera-overlay" id="cameraTrigger">
+                <i class="fas fa-camera"></i>
+            </div>
+        </div>
+        <div class="photo-hint">
+            <i class="fas fa-cloud-upload-alt"></i> Tap camera icon to upload photo
+        </div>
+        <input type="file" id="photoUpload" accept="image/jpeg,image/png,image/jpg">
+    </div>
+
+    <div class="name-title">
+        <div class="name">Tebello Basetsana Moime</div>
+        <div class="badge-role"><i class="fas fa-heartbeat"></i> Kinesiologist · Coaching Science · Sport Rehab</div>
+        <div class="location-bio">
+            <i class="fas fa-map-marker-alt"></i> Pretoria West, South Africa
+            <i class="fas fa-futbol"></i>
+        </div>
+    </div>
+
+    <div class="summary">
+        <i class="fas fa-quote-left" style="margin-right: 6px; opacity: 0.7;"></i> 
+        Diploma in Kinesiology & Coaching Science | Human movement specialist passionate about athlete development, injury prevention, and data-driven performance. Experienced in sports rehab, student wellness programs, and team operations. Eager to apply scientific principles for positive impact.
+    </div>
+
+    <!-- LINK IN BIO BUTTONS -->
+    <div class="action-links">
+        <a href="mailto:moimebasetsana@gmail.com" class="btn-link">
+            <i class="fas fa-envelope"></i> moimebasetsana@gmail.com
+        </a>
+        <a href="tel:+27652932872" class="btn-link">
+            <i class="fas fa-phone-alt"></i> (065) 293 2872
+        </a>
+        <a href="https://wa.me/27652932872?text=Hi%20Tebello%2C%20saw%20your%20EPK%20and%20I'd%20like%20to%20connect!" target="_blank" class="btn-link btn-solid-primary">
+            <i class="fab fa-whatsapp"></i> WhatsApp Me
+        </a>
+        <div class="btn-link" id="downloadEpkCv">
+            <i class="fas fa-file-alt"></i> Download CV (Summary)
+        </div>
+        <div class="btn-link" id="copyEmailAction">
+            <i class="fas fa-copy"></i> Copy Email Address
+        </div>
+    </div>
+
+    <div class="content-section">
+        <!-- CORE SKILLS -->
+        <div class="section-head">
+            <i class="fas fa-dumbbell"></i> Core Competencies
+        </div>
+        <div>
+            <span class="skill-chip">Kinesiology & Coaching</span>
+            <span class="skill-chip">Injury Prevention & Rehab</span>
+            <span class="skill-chip">Program Design</span>
+            <span class="skill-chip">Data Capturing & Reporting</span>
+            <span class="skill-chip">Event Coordination</span>
+            <span class="skill-chip">On-field Emergency Response</span>
+            <span class="skill-chip">Team Management</span>
+            <span class="skill-chip">Graphic Design (Canva)</span>
+            <span class="skill-chip">Student Wellness Initiatives</span>
+        </div>
+
+        <!-- LANGUAGES -->
+        <div class="section-head">
+            <i class="fas fa-language"></i> Languages
+        </div>
+        <div>
+            <span class="lang-tag"><i class="fas fa-check-circle" style="color:#2c8b70;"></i> English (Good)</span>
+            <span class="lang-tag"><i class="fas fa-check-circle" style="color:#2c8b70;"></i> isiZulu (Good)</span>
+            <span class="lang-tag"><i class="fas fa-adjust"></i> Sepedi (Fair)</span>
+            <span class="lang-tag"><i class="fas fa-adjust"></i> Afrikaans (Fair)</span>
+        </div>
+
+        <!-- WORK EXPERIENCE -->
+        <div class="section-head">
+            <i class="fas fa-briefcase"></i> Professional Experience
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-title">Student Life Office Assistant</div>
+            <div class="exp-meta">Posterity Students Capital | 2024 – Oct 2025</div>
+            <div class="exp-desc">Planned student programs, wellness events, data capturing, incident logs, graphic design for branding, logistics, and event coordination. Produced student life reports and tracked departmental activities.</div>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-title">Sports Science Intern</div>
+            <div class="exp-meta">JVW Football Club</div>
+            <div class="exp-desc">Designed rehab programs for injured athletes, delivered on-field injury response during matches/training, tracked recovery metrics, and collaborated with coaches to enhance performance and reduce injury risk.</div>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-title">Team Manager</div>
+            <div class="exp-meta">Vikings Ladies Football | 2023 – Dec 2024</div>
+            <div class="exp-desc">Managed team operations, training/match logistics, player registration on official FA database, administrative support to coaching staff, and facilitated team meetings.</div>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-title">Residence Assistant</div>
+            <div class="exp-meta">Muzinda Residence | Jan 2023 – Dec 2023</div>
+            <div class="exp-desc">Frontline student support, check-in/out processes, emergency response, incident reporting, orientation coordination, and maintaining confidential records.</div>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-title">Waitress</div>
+            <div class="exp-meta">De Molen, Edenvale | Jun 2019 – Jun 2021</div>
+            <div class="exp-desc">Customer service, POS handling, order coordination, and ensuring high-standard environment in fast-paced setting.</div>
+        </div>
+
+        <!-- VOLUNTEER -->
+        <div class="section-head">
+            <i class="fas fa-hands-helping"></i> Volunteer & Match Day
+        </div>
+        <div class="exp-item">
+            <div class="exp-title">Match Day Assistant Intern | Women's Varsity Football</div>
+            <div class="exp-meta">Tshwane University of Technology | Aug 2023 & Aug 2024</div>
+            <div class="exp-desc">Coordinated interviews with coaches/players, managed branding and match-day setup, supported media teams, demonstrated strong organization under pressure.</div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="section-head">
+            <i class="fas fa-graduation-cap"></i> Education
+        </div>
+        <div class="exp-item">
+            <div class="exp-title">📘 Diploma in Kinesiology and Coaching Science</div>
+            <div class="exp-meta">Tshwane University of Technology</div>
+            <div class="exp-desc">Focus on human movement, athletic performance, injury prevention strategies, and coaching methodologies.</div>
+        </div>
+        <div class="exp-item">
+            <div class="exp-title">🎓 National Senior Certificate (Bachelor's Degree)</div>
+            <div class="exp-meta">Norkem Park High School | Grade 12</div>
+            <div class="exp-desc">Matric with university exemption.</div>
+        </div>
+
+        <div style="margin-top: 12px; background:#EAF9F2; border-radius: 20px; padding: 10px 14px; font-size: 0.8rem;">
+            <i class="fas fa-certificate"></i> <strong>Highlight:</strong> On-field injury response, rehab program design, and holistic athlete wellness.
+        </div>
+    </div>
+
+    <div class="footer-credit">
+        <i class="fas fa-id-card"></i> Electronic Press Kit · Open to sport science, coaching, and wellness roles<br>
+        📍 Based in Pretoria West · Available for collaborations
+    </div>
+</div>
+
+<div id="toastMsg" class="toast-notify">✔️ Copied</div>
+
+<script>
+    // photo upload logic
+    const fileInput = document.getElementById('photoUpload');
+    const profileImg = document.getElementById('profileImage');
+    const cameraTrigger = document.getElementById('cameraTrigger');
+
+    cameraTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file && (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                profileImg.src = e.target.result;
+                showToast("📸 Profile photo updated!", 1800);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            showToast("⚠️ Please upload JPG or PNG", 1500);
+        }
+    });
+
+    // toast helper
+    function showToast(msg, duration = 2000) {
+        const toast = document.getElementById('toastMsg');
+        toast.textContent = msg;
+        toast.style.opacity = '1';
+        setTimeout(() => {
+            toast.style.opacity = '0';
+        }, duration);
+    }
+
+    // copy email button
+    const copyBtn = document.getElementById('copyEmailAction');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            const email = "moimebasetsana@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                showToast("📧 Email copied: moimebasetsana@gmail.com", 1800);
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = email;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast("📧 Copied to clipboard", 1500);
+            });
+        });
+    }
+
+    // download CV summary (professional .txt)
+    const downloadCv = document.getElementById('downloadEpkCv');
+    if (downloadCv) {
+        downloadCv.addEventListener('click', () => {
+            const cvContent = `==================================================
+   TEBELLO BASETSANA NONHLANHLA MOIME
+   SPORT SCIENTIST | KINESIOLOGY & COACHING
+==================================================
+
+📍 PERSONAL
+• Full name: Tebello Basetsana Nonhlanhla Moime
+• Location: Pretoria West, South Africa
+• Contact: (065) 293 2872 · moimebasetsana@gmail.com
+• Languages: English, isiZulu (Good); Sepedi, Afrikaans (Fair)
+
+📌 PROFILE
+Highly organized sport science professional with a Diploma in Kinesiology and Coaching Science. Strong foundation in human movement, injury prevention, and athlete development. Passionate about optimizing performance via training methods, data analysis, and multidisciplinary teamwork.
+
+🎓 EDUCATION
+• Diploma in Kinesiology and Coaching Science – Tshwane University of Technology
+• National Senior Certificate (Bachelor's) – Norkem Park High School
+
+💼 EXPERIENCE HIGHLIGHTS
+• Student Life Office Assistant @ Posterity Students Capital (2024-2025)
+   - Planned wellness events, data capturing, graphic design, logistics.
+• Sports Science Intern @ JVW Football Club
+   - Rehab programs, on-field injury response, recovery tracking.
+• Team Manager @ Vikings Ladies Football (2023-2024)
+   - Operations, player registration (FA database), team admin.
+• Residence Assistant @ Muzinda Residence (2023)
+   - Frontline support, emergency response, orientation coordination.
+• Waitress @ De Molen (2019-2021)
+   - Customer service & POS.
+
+🤝 VOLUNTEER
+• Match Day Assistant – Women's Varsity Football (TUT 2023,2024)
+   - Media coordination, branding, match-day setup.
+
+⚡ SKILLS
+Kinesiology & Coaching · Injury Prevention & Rehab · Program Design
+Data Analysis & Reporting · Event Coordination · Team Management
+On-field Emergency Care · Graphic Design · Student Wellness
+
+📜 CERTIFICATES & STRENGTHS
+• On-field injury response & rehabilitation planning
+• Strong communicator, adaptable, proactive problem solver
+
+📞 References available upon request.
+
+Generated from official EPK – updated 2026.
+==================================================`;
+            const blob = new Blob([cvContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.href = url;
+            link.download = 'Tebello_Moime_CV_Official.txt';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            showToast("📄 CV summary downloaded (.txt)", 2000);
+        });
+    }
+
+    // optional: right click on phone number copy 
+    const phoneElement = document.querySelector('a[href="tel:+27652932872"]');
+    if (phoneElement) {
+        phoneElement.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            navigator.clipboard.writeText('065 293 2872').then(() => showToast("📞 Phone number copied", 1500));
+        });
+        phoneElement.title = "Left click to call | Right click copy number";
+    }
+
+    // click on location copy address
+    const locationDiv = document.querySelector('.location-bio');
+    if (locationDiv) {
+        locationDiv.style.cursor = 'pointer';
+        locationDiv.addEventListener('click', () => {
+            const address = "194 Quagga Road, Proclamation Hill, Pretoria West, 0183";
+            navigator.clipboard.writeText(address).then(() => {
+                showToast("📍 Address copied: " + address, 2000);
+            }).catch(() => showToast("📍 Address copied (Pretoria West)", 1500));
+        });
+        locationDiv.title = "Click to copy full address";
+    }
+</script>
+</body>
+</html>', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
             'personal-trainer': { title: 'Personal Trainer', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
             'yoga-pilates-instructor': { title: 'Yoga / Pilates Instructor', epks: ['epk-1.html', 'epk-2.html', 'epk-3.html', 'epk-4.html', 'epk-5.html', 'epk-6.html'] },
 
