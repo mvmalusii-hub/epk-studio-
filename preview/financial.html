@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>EPK Previews · Entertainment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0b1120;
+            font-family: 'Inter', sans-serif;
+            color: #e2e8f0;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page-wrapper {
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        /* ─── HEADER ─── */
+        .page-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #1e2a3a;
+        }
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #6ee7b7, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .page-header h1 i {
+            -webkit-text-fill-color: initial;
+            color: #fbbf24;
+            margin-right: 8px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1e293b;
+            padding: 0.6rem 1.4rem;
+            border-radius: 60px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            border: 1px solid #334155;
+        }
+        .back-link:hover {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: #fff;
+        }
+
+        /* ─── INSTRUCTIONS ─── */
+        .instructions-box {
+            background: #131c2c;
+            border: 1px solid #1e2f44;
+            border-radius: 1.2rem;
+            padding: 1.2rem 1.8rem;
+            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #cbd5e1;
+        }
+        .instructions-box strong { color: #fbbf24; }
+        .instructions-box code {
+            background: #0f172a;
+            padding: 0.2rem 0.6rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: #6ee7b7;
+            border: 1px solid #1e2a3a;
+        }
+        .instructions-box i { color: #3b82f6; margin-right: 6px; }
+
+        /* ─── 6‑PHONE GRID ─── */
+        .phone-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .phone-mockup {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .phone-body {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 9 / 19;
+            max-width: 300px;
+            background: #0b0b12;
+            border-radius: 42px;
+            padding: 14px;
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, 0.8),
+                0 0 0 1px rgba(255, 255, 255, 0.06),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            flex-shrink: 0;
+        }
+        .phone-body:hover {
+            transform: scale(1.02) translateY(-4px);
+            box-shadow:
+                0 40px 80px rgba(0, 0, 0, 0.9),
+                0 0 0 1px rgba(255, 255, 255, 0.08),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #111118;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6);
+        }
+        .notch {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110px;
+            height: 26px;
+            background: #0b0b12;
+            border-radius: 0 0 18px 18px;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+        }
+        .notch .camera {
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle at 35% 35%, #2a2a3a, #0a0a12);
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .notch .speaker {
+            width: 36px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+        }
+        .phone-screen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            background: #0a0a12;
+        }
+        .phone-label {
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-align: center;
+            letter-spacing: 0.3px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            border: 1px solid #1e2a3a;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 992px) {
+            .phone-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        }
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.8rem; }
+            .page-header h1 { font-size: 1.5rem; }
+            .phone-grid { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+            .phone-body { max-width: 180px; padding: 10px; border-radius: 30px; }
+            .phone-screen { border-radius: 22px; }
+            .notch { width: 70px; height: 18px; top: 6px; }
+            .notch .speaker { width: 24px; height: 3px; }
+            .notch .camera { width: 7px; height: 7px; }
+            .instructions-box { font-size: 0.8rem; padding: 1rem; }
+        }
+        @media (max-width: 420px) {
+            .phone-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .phone-body { max-width: 240px; }
+        }
+
+        .page-footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1e2a3a;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #475569;
+        }
+        .page-footer a { color: #3b82f6; text-decoration: none; }
+        .page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+
+        <!-- ═══ HEADER ═══ -->
+        <header class="page-header">
+            <h1><i class="fas fa-mobile-alt"></i> Entertainment · EPK Previews</h1>
+            <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Studio</a>
+        </header>
+
+        <!-- ═══ INSTRUCTIONS ═══ -->
+        <div class="instructions-box">
+            <p><i class="fas fa-paste"></i> <strong>Paste your EPK HTML into each phone:</strong></p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.3rem;">
+                <li><strong>Option A:</strong> Save each EPK as <code>epk-1.html</code> … <code>epk-6.html</code> in the <strong>same folder</strong>, then change <code>src</code> below.</li>
+                <li><strong>Option B:</strong> Replace <code>src</code> with <code>srcdoc="&lt;!-- YOUR FULL EPK HTML --&gt;"</code> (escape double quotes inside).</li>
+            </ul>
+        </div>
+
+        <!-- ═══ 6‑PHONE GRID ═══ -->
+        <div class="phone-grid">
+
+            <!-- ─── PHONE 1 ─── -->
+            <div class="phone-mockup">
+                <div class="phone-body">
+                    <div class="phone-screen">
+                        <div class="notch"><span class="camera"></span><span class="speaker"></span></div>
+                        <!-- >>> PASTE YOUR EPK #1 HERE <<< -->
+                        <iframe src="epk-1.html" title="EPK Preview 1"></iframe>
+                    </div>
+                </div>
+                <div class="phone-label">EPK Style 1</div>
+            </div>
+
+            <!-- ─── PHONE 2 ─── -->
+            <div class="phone-mockup">
+                <div class="phone-body">
+                    <div class="phone-screen">
+                        <div class="notch"><span class="camera"></span><span class="speaker"></span></div>
+                        <!-- >>> PASTE YOUR EPK #2 HERE <<< -->
+                        <iframe src="epk-2.html" title="EPK Preview 2"></iframe>
+                    </div>
+                </div>
+                <div class="phone-label">EPK Style 2</div>
+            </div>
+
+            <!-- ─── PHONE 3 ─── -->
+            <div class="phone-mockup">
+                <div class="phone-body">
+                    <div class="phone-screen">
+                        <div class="notch"><span class="camera"></span><span class="speaker"></span></div>
+                        <!-- >>> PASTE YOUR EPK #3 HERE <<< -->
+                        <iframe src="epk-3.html" title="EPK Preview 3"></iframe>
+                    </div>
+                </div>
+                <div class="phone-label">EPK Style 3</div>
+            </div>
+
+            <!-- ─── PHONE 4 ─── -->
+            <div class="phone-mockup">
+                <div class="phone-body">
+                    <div class="phone-screen">
+                        <div class="notch"><span class="camera"></span><span class="speaker"></span></div>
+                        <!-- >>> PASTE YOUR EPK #4 HERE <<< -->
+                        <iframe src="epk-4.html" title="EPK Preview 4"></iframe>
+                    </div>
+                </div>
+                <div class="phone-label">EPK Style 4</div>
+            </div>
+
+            <!-- ─── PHONE 5 ─── -->
+            <div class="phone-mockup">
+                <div class="phone-body">
+                    <div class="phone-screen">
+                        <div class="notch"><span class="camera"></span><span class="speaker"></span></div>
+                        <!-- >>> PASTE YOUR EPK #5 HERE <<< -->
+                        <iframe src="epk-5.html" title="EPK Preview 5"></iframe>
+                    </div>
+                </div>
+                <div class="phone-label">EPK Style 5</div>
+            </div>
+
+            <!-- ─── PHONE 6 ─── -->
+            <div class="phone-mockup">
+                <div class="phone-body">
+                    <div class="phone-screen">
+                        <div class="notch"><span class="camera"></span><span class="speaker"></span></div>
+                        <!-- >>> PASTE YOUR EPK #6 HERE <<< -->
+                        <iframe src="epk-6.html" title="EPK Preview 6"></iframe>
+                    </div>
+                </div>
+                <div class="phone-label">EPK Style 6</div>
+            </div>
+
+        </div>
+
+        <!-- ═══ FOOTER ═══ -->
+        <footer class="page-footer">
+            <p>Duplicate this page for every category — just change the <strong>&lt;title&gt;</strong> and the <strong>&lt;h1&gt;</strong>.</p>
+            <p style="margin-top: 0.5rem;">Need help? <a href="mailto:mv.malusi@legacylaunchpad.co.za">mv.malusi@legacylaunchpad.co.za</a></p>
+        </footer>
+
+    </div>
+</body>
+</html>
